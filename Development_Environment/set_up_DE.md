@@ -2,25 +2,34 @@ Development_Environment.md
 
 开发环境搭建：
 
+* 安裝 Python
+* 安裝 VScode
+* 安裝 Git
+
+
 (1) 安装Python
 
-    Python的官方網站：https://www.python.org
-
-(2) 安装conda
-
+Python的官方網站：https://www.python.org
+安装conda
 
 
-(3) 安裝集成开发环境（IDE）：VScode
+
+(2) 安裝集成开发环境（IDE）：VScode
 
     VScode官方網站：https://code.visualstudio.com
 
-(4) 安装VScode延伸模組
+    在Windows系统中，优先选择用户安装，不需要管理员权限，并且会被安装到本地的AppData文件中，后台更新效果更好，会有更好的后台体验。
+    系统安装需要管理员权限，会被安装到Program Files文件夹中。
+
+
+安装VScode延伸模組
 
     中文支持：Language pack extension for Chinese
     Python延伸模組：Python、Pylance、Python Debugger
     HTML延伸模組：Live Server
 
-(5) 安装Python第三方庫（在终端中安装）
+
+安装Python第三方庫（在终端中安装）
 
     需要安裝的包：pandas、openpyxl、xlrd、python-docx
 
@@ -54,28 +63,15 @@ Development_Environment.md
     先返回上一级目录，再进入子文件夹：   可以輸入 cd ../Desktop 先回到上一層目錄，再進入 Desktop 文件夾
     回到前一個/下一個指令:             ↑(上箭頭)/↓(下箭頭)
 
-() 安裝Node.js和npm（使用Electron框架的準備工作）
 
-    Node.js官方網站: https://nodejs.org/
-    使用Windows系统安装程序时，在第一个界面将添加到环境变量的选择框选中。
+(3) 安裝Git
 
-    檢查是否已經安裝的指令：
-    node -v
-    npm -v
-    
-    如過執行結果顯示版本號，說明 Node.js 和 npm 已經安裝成功。
+Git官方網站：https://git-scm.com/downloads
 
-    npm (Node Package Manager) 是隨 Node.js 一起安裝的包管理工具，它的主要作用包括以下幾個方面：1.包管理；2.項目初始化；3.包發佈與分享；4.本地與全局安裝；5.依賴管理；6.運行腳本。
+安裝方法：
+在macOS系统中：終端機中執行 xcode-select --install 指令。這條指令的作用是安裝Xcode命令行工具（Command Line Tools），其中包括Git版本控制系統。
+在Windows系统中：在官网下载安装。
 
-(6) 安裝Git
+檢查安裝是否成功：在VScode的終端機中執行 git --version 指令，執行結果如果出現Git的版本編號，則表示安裝成功。
 
-    Git官方網站：https://git-scm.com/downloads
-
-    安裝方法：
-    在macOS系统中：終端機中執行 xcode-select --install 指令。這條指令的作用是安裝Xcode命令行工具（Command Line Tools），其中包括Git版本控制系統。
-    在Windows系统中：在官网下载安装。
-    
-    檢查安裝是否成功：在VScode的終端機中執行 git --version 指令，執行結果如果出現Git的版本編號，則表示安裝成功。
-    
-    設置用戶名的指令：git config --global user.name 'your_name'
-    設置Email的指令：git config --global user.email 'your_name@gmail.com'
+初始化與配置提交作者詳見 git_basic.md 的(2)(3)
