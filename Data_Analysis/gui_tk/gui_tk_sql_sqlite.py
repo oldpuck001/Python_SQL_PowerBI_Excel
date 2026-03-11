@@ -7,10 +7,10 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter.scrolledtext import ScrolledText
-from gui_tk import gui_tk_area_text
+from Accounting_Audit.gui_tk import gui_tk_area_text
 from gui_tk import gui_tk_import_xlsx_xls_csv_txt
-from dataframe_tools_pd import df_review_xlsx_fun
-from dataframe_tools_pd import df_export_xlsx_fun
+from Accounting_Audit.dataframe_tools_pd import df_review_xlsx_fun
+from Accounting_Audit.dataframe_tools_pd import df_export_xlsx_fun
 from sql_tools_sqlite import create_database_sqlite_fun
 from sql_tools_sqlite import get_all_tables_sqlite_fun
 from sql_tools_sqlite import get_table_columns_sqlite

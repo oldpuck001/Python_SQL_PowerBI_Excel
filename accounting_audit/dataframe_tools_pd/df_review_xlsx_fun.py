@@ -20,4 +20,6 @@ def df_review_xlsx(df):
     elif os.name == 'nt':
         os.startfile(temp_path)
 
-    return [True, f'Preview file: {temp_path}\n', temp_path]
+    info = f'Preview file: {temp_path}\n'
+
+    return [True, info, temp_path]

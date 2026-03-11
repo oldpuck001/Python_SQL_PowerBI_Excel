@@ -24,113 +24,113 @@ class gui_tk_sheet_regex_class:
 
     def gui_tk_sheet_regex_frame(self, root, control_frame_config, text_area):
 
-        frame_result = tk.Frame(root)
-        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=5)
-
-        frame_result.frame_1 = tk.Frame(frame_result)
-        frame_result.frame_1.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_1, text='File Path', width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_1.entry_widget = tk.Entry(frame_result.frame_1, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
-        frame_result.frame_1.entry_widget.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
-
         options_banlk = []
         options_label = ['', '~']
 
-        frame_result.frame_2 = tk.Frame(frame_result)
-        frame_result.frame_2.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_2, text='选择工作表', width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_2.combobox_sheet = ttk.Combobox(frame_result.frame_2, values=options_banlk, state='readonly')
-        frame_result.frame_2.combobox_sheet.pack(side=tk.LEFT, padx=5, pady=5)
-        tk.Label(frame_result.frame_2, text='选择筛选列', width=8, anchor='w').pack(side=tk.LEFT, padx=(50, 5), pady=5)
-        frame_result.frame_2.combobox_col = ttk.Combobox(frame_result.frame_2, values=options_banlk, state='readonly')
-        frame_result.frame_2.combobox_col.pack(side=tk.LEFT, padx=5, pady=5)
-        tk.Label(frame_result.frame_2, text='选择标识符', width=8, anchor='w').pack(side=tk.LEFT, padx=(50, 5), pady=5)
-        frame_result.frame_2.combobox_label = ttk.Combobox(frame_result.frame_2, values=options_label, state='readonly')
-        frame_result.frame_2.combobox_label.pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result = tk.Frame(root)
+        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=(10, 5))
 
-        frame_result.frame_3 = tk.Frame(frame_result)
-        frame_result.frame_3.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_3, text='正则表达式（Python环境）', width=17, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_3.entry_widget = tk.Entry(frame_result.frame_3)
-        frame_result.frame_3.entry_widget.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
+        frame_result.frame_path = tk.Frame(frame_result)
+        frame_result.frame_path.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_path, text=control_frame_config['widget_text'][0], width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_path.entry_path = tk.Entry(frame_result.frame_path, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
+        frame_result.frame_path.entry_path.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
+
+        frame_result.frame_sheet_col_label = tk.Frame(frame_result)
+        frame_result.frame_sheet_col_label.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_sheet_col_label, text=control_frame_config['widget_text'][1], width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_col_label.combobox_sheet = ttk.Combobox(frame_result.frame_sheet_col_label, values=options_banlk, state='readonly', width=26)
+        frame_result.frame_sheet_col_label.combobox_sheet.pack(side=tk.LEFT, padx=5, pady=5)
+        tk.Label(frame_result.frame_sheet_col_label, text=control_frame_config['widget_text'][2], width=8, anchor='w').pack(side=tk.LEFT, padx=(105, 5), pady=5)
+        frame_result.frame_sheet_col_label.combobox_col = ttk.Combobox(frame_result.frame_sheet_col_label, values=options_banlk, state='readonly', width=26)
+        frame_result.frame_sheet_col_label.combobox_col.pack(side=tk.LEFT, padx=(5, 105), pady=5)
+        tk.Label(frame_result.frame_sheet_col_label, text=control_frame_config['widget_text'][3], width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_col_label.combobox_label = ttk.Combobox(frame_result.frame_sheet_col_label, values=options_label, state='readonly', width=26)
+        frame_result.frame_sheet_col_label.combobox_label.pack(side=tk.LEFT, padx=5, pady=5)
+
+        frame_result.frame_regex = tk.Frame(frame_result)
+        frame_result.frame_regex.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_regex, text=control_frame_config['widget_text'][4], width=17, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_regex.entry_regex = tk.Entry(frame_result.frame_regex)
+        frame_result.frame_regex.entry_regex.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
 
         # 正则表达式指令区
-        frame_result.frame_4 = tk.Frame(frame_result)
-        frame_result.frame_4.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-        tk.Label(frame_result.frame_4, text='正则表达式指令区', anchor='w').pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
-        frame_result.frame_4.regex_command_text_area = ScrolledText(frame_result.frame_4, height=15)
-        frame_result.frame_4.regex_command_text_area.pack(side=tk.TOP, expand=True, fill=tk.BOTH)
+        frame_result.frame_regex_command = tk.Frame(frame_result)
+        frame_result.frame_regex_command.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        tk.Label(frame_result.frame_regex_command, text=control_frame_config['widget_text'][5], anchor='w').pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+        frame_result.frame_regex_command.regex_command_text_area = ScrolledText(frame_result.frame_regex_command, height=15)
+        frame_result.frame_regex_command.regex_command_text_area.pack(side=tk.TOP, expand=True, fill=tk.BOTH)
 
         # 按钮行
-        frame_result.frame_5 = tk.Frame(frame_result)
-        frame_result.frame_5.pack(side=tk.TOP, fill=tk.BOTH)
+        frame_result.frame_button = tk.Frame(frame_result)
+        frame_result.frame_button.pack(side=tk.TOP, fill=tk.BOTH)
         # 选择文件按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][0],
-                  command=lambda: self.select_sheet(frame_result.frame_1.entry_widget,
-                                                    frame_result.frame_2.combobox_sheet,
-                                                    frame_result.frame_2.combobox_col,
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][6],
+                  command=lambda: self.select_sheet(frame_result.frame_path.entry_path,
+                                                    frame_result.frame_sheet_col_label.combobox_sheet,
+                                                    frame_result.frame_sheet_col_label.combobox_col,
                                                     text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # 导入数据按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][1],
-                  command=lambda: self.import_sheet(frame_result.frame_1.entry_widget,
-                                                    frame_result.frame_2.combobox_sheet,
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][7],
+                  command=lambda: self.import_sheet(frame_result.frame_path.entry_path,
+                                                    frame_result.frame_sheet_col_label.combobox_sheet,
                                                     text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # 预览数据按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][2],
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][8],
                   command=lambda: self.button_preview_fun(text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # 添加regex按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][3],
-                  command=lambda: self.add_regex(frame_result.frame_2.combobox_col,
-                                                 frame_result.frame_2.combobox_label,
-                                                 frame_result.frame_3.entry_widget,
-                                                 frame_result.frame_4.regex_command_text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][9],
+                  command=lambda: self.add_regex(frame_result.frame_sheet_col_label.combobox_col,
+                                                 frame_result.frame_sheet_col_label.combobox_label,
+                                                 frame_result.frame_regex.entry_regex,
+                                                 frame_result.frame_regex_command.regex_command_text_area),
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # []按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][4],
-                  command=lambda: self.add_brackets(frame_result.frame_4.regex_command_text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][10],
+                  command=lambda: self.add_brackets(frame_result.frame_regex_command.regex_command_text_area),
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # AND按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][5],
-                  command=lambda: self.add_and(frame_result.frame_4.regex_command_text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][11],
+                  command=lambda: self.add_and(frame_result.frame_regex_command.regex_command_text_area),
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # OR按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][6],
-                  command=lambda: self.add_or(frame_result.frame_4.regex_command_text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][12],
+                  command=lambda: self.add_or(frame_result.frame_regex_command.regex_command_text_area),
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # 执行筛选按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][7],
-                  command=lambda: self.command_regex(frame_result.frame_4.regex_command_text_area,
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][13],
+                  command=lambda: self.command_regex(frame_result.frame_regex_command.regex_command_text_area,
                                                      text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
         # 导出按钮
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][8],
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][14],
                   command=lambda: self.export_data(text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=10).pack(side=tk.LEFT, padx=5, pady=5)
 
-        frame_result.frame_2.combobox_sheet.bind('<<ComboboxSelected>>',
-                                                  lambda event: self.on_sheet_change(event,
-                                                                                     frame_result.frame_1.entry_widget,
-                                                                                     frame_result.frame_2.combobox_sheet,
-                                                                                     frame_result.frame_2.combobox_col,))
+        frame_result.frame_sheet_col_label.combobox_sheet.bind('<<ComboboxSelected>>',
+                                                               lambda event: self.on_sheet_change(event,
+                                                                                                  frame_result.frame_path.entry_path,
+                                                                                                  frame_result.frame_sheet_col_label.combobox_sheet,
+                                                                                                  frame_result.frame_sheet_col_label.combobox_col))
         
         return frame_result
 
 
     # 选择文件按钮函数
-    def select_sheet(self, path_widget, sheet_widget, combobox_col, text_area):
+    def select_sheet(self, entry_path, combobox_sheet, combobox_col, text_area):
 
         fill_text = ''
         path = filedialog.askopenfilename(filetypes=[('Excel Files', '*.xlsx'),
                                                      ('Excel Files', '*.xls')])
 
         if path:
-            path_widget.config(state='normal')
-            path_widget.delete(0, tk.END)
-            path_widget.insert(0, path)
-            path_widget.config(state='readonly')
+            entry_path.config(state='normal')
+            entry_path.delete(0, tk.END)
+            entry_path.insert(0, path)
+            entry_path.config(state='readonly')
             fill_text += f'Selected: {path}\n'
             fill_text += 'File selection successful!\n'
 
@@ -138,35 +138,36 @@ class gui_tk_sheet_regex_class:
             if sheets_name_result[0]:
 
                 sheets_name_list = sheets_name_result[2]
-                sheet_widget['values'] = sheets_name_list
-                sheet_widget.set(sheets_name_list[0])               # 设置默认选择第一个
-                sheet_widget.config(state='readonly')
+                combobox_sheet['values'] = sheets_name_list
+                combobox_sheet.set(sheets_name_list[0])               # 设置默认选择第一个
+                combobox_sheet.config(state='readonly')
 
             else:
 
-                sheet_widget.set('')
-                sheet_widget.config(state='disabled')
+                combobox_sheet.set('')
+                combobox_sheet.config(state='disabled')
 
             fill_text += sheets_name_result[1]
 
         else:
             fill_text += f'File selection failed!\n'
 
-        self.on_sheet_change(None, path_widget, sheet_widget, combobox_col)
+        self.on_sheet_change(None, entry_path, combobox_sheet, combobox_col)
 
         gui_tk_area_text.text_area_fill(text_area, fill_text)
 
 
     # 自动更新列名列表
-    def on_sheet_change(self, event, file_entry, combobox_sheet, combobox_col):
+    def on_sheet_change(self, event, entry_path, combobox_sheet, combobox_col):
 
-        file_path = file_entry.get()
+        file_path = entry_path.get()
         sheet_name = combobox_sheet.get()
 
         result = columns_title_fun.columns_title(file_path, sheet_name)
 
         if result[0]:
-            new_options = result[1]
+
+            new_options = result[2]
 
             combobox_col['values'] = new_options
             if new_options[0]:
@@ -175,11 +176,11 @@ class gui_tk_sheet_regex_class:
 
 
     # 导入按钮函数
-    def import_sheet(self, path_widget, sheet_widget, text_area):
+    def import_sheet(self, entry_path, combobox_sheet, text_area):
 
         fill_text = ''
-        path = path_widget.get()
-        sheet_name = sheet_widget.get()
+        path = entry_path.get()
+        sheet_name = combobox_sheet.get()
 
         if path:
 

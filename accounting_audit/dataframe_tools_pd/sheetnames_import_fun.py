@@ -4,10 +4,10 @@
 
 import pandas as pd
 
-def sheetnames_import(original_file_path=None):
+def sheetnames_import(file_path=None):
 
     try:
-        sheet_file = pd.ExcelFile(original_file_path)
+        sheet_file = pd.ExcelFile(file_path)
         sheetnames = sheet_file.sheet_names
         info = 'Worksheet list successfully read!\n'
         return [True, info, sheetnames]

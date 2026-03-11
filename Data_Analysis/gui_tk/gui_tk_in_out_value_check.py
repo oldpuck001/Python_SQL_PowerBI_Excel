@@ -6,10 +6,10 @@ import subprocess
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-from gui_tk import gui_tk_area_text
+from Accounting_Audit.gui_tk import gui_tk_area_text
 from gui_tk import gui_tk_import_xlsx_xls_csv_txt
-from dataframe_tools_pd import df_review_xlsx_fun
-from dataframe_tools_pd import df_col_label_fun
+from Accounting_Audit.dataframe_tools_pd import df_review_xlsx_fun
+from Accounting_Audit.dataframe_tools_pd import df_col_label_fun
 from dataframe_tools_pd import in_out_value_check_sum_fun
 from dataframe_tools_pd import in_out_value_check_layering_fun
 from xlsx_tools_openxl import create_new_xlsx_fun

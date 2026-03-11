@@ -4,7 +4,7 @@
 
 import openpyxl
 from openpyxl.utils import get_column_letter
-from xlsx_tools_openxl import cell_format_fun
+from Accounting_Audit.xlsx_tools_openxl import cell_format_fun
 
 def fill_in_xlsx_list(file_path, fill_in_xlsx, data_only=False):
 

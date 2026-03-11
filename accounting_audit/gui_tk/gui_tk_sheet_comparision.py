@@ -17,53 +17,53 @@ class gui_tk_sheet_comparision_class:
     def gui_tk_sheet_comparision_frame(self, root, control_frame_config, text_area):
         
         frame_result = tk.Frame(root)
-        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=5)
+        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=(10, 5))
 
         options = []
 
-        frame_result.frame_1 = tk.Frame(frame_result)
-        frame_result.frame_1.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_1, text='File Path 1', width=10).pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_1.entry_file_1 = tk.Entry(frame_result.frame_1, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
-        frame_result.frame_1.entry_file_1.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
+        frame_result.frame_file_1 = tk.Frame(frame_result)
+        frame_result.frame_file_1.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_file_1, text=control_frame_config['widget_text'][0], width=10, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_file_1.entry_file_1 = tk.Entry(frame_result.frame_file_1, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
+        frame_result.frame_file_1.entry_file_1.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
 
-        frame_result.frame_2 = tk.Frame(frame_result)
-        frame_result.frame_2.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_2, text='选择工作表', width=10).pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_2.combobox_sheet_1 = ttk.Combobox(frame_result.frame_2, values=options, state='readonly')
-        frame_result.frame_2.combobox_sheet_1.pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_1 = tk.Frame(frame_result)
+        frame_result.frame_sheet_1.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_sheet_1, text=control_frame_config['widget_text'][1], width=10, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_1.combobox_sheet_1 = ttk.Combobox(frame_result.frame_sheet_1, values=options, state='readonly')
+        frame_result.frame_sheet_1.combobox_sheet_1.pack(side=tk.LEFT, padx=5, pady=5)
 
-        frame_result.frame_3 = tk.Frame(frame_result)
-        frame_result.frame_3.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_3, text='File Path 2', width=10).pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_3.entry_file_2 = tk.Entry(frame_result.frame_3, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
-        frame_result.frame_3.entry_file_2.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
+        frame_result.frame_file_2 = tk.Frame(frame_result)
+        frame_result.frame_file_2.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_file_2, text=control_frame_config['widget_text'][2], width=10, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_file_2.entry_file_2 = tk.Entry(frame_result.frame_file_2, state='readonly', readonlybackground='white')         # 创建Entry并保存引用
+        frame_result.frame_file_2.entry_file_2.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
 
-        frame_result.frame_4 = tk.Frame(frame_result)
-        frame_result.frame_4.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_result.frame_4, text='选择工作表', width=10).pack(side=tk.LEFT, padx=5, pady=5)
-        frame_result.frame_4.combobox_sheet_2 = ttk.Combobox(frame_result.frame_4, values=options, state='readonly')
-        frame_result.frame_4.combobox_sheet_2.pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_2 = tk.Frame(frame_result)
+        frame_result.frame_sheet_2.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Label(frame_result.frame_sheet_2, text=control_frame_config['widget_text'][3], width=10, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
+        frame_result.frame_sheet_2.combobox_sheet_2 = ttk.Combobox(frame_result.frame_sheet_2, values=options, state='readonly')
+        frame_result.frame_sheet_2.combobox_sheet_2.pack(side=tk.LEFT, padx=5, pady=5)
 
-        frame_result.frame_5 = tk.Frame(frame_result)
-        frame_result.frame_5.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][0],
-                  command=lambda: self.input_sheet(frame_result.frame_1.entry_file_1,
-                                                   frame_result.frame_2.combobox_sheet_1,
+        frame_result.frame_button = tk.Frame(frame_result)
+        frame_result.frame_button.pack(side=tk.TOP, fill=tk.BOTH)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][4],
+                  command=lambda: self.input_sheet(frame_result.frame_file_1.entry_file_1,
+                                                   frame_result.frame_sheet_1.combobox_sheet_1,
                                                    text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][1],
-                  command=lambda: self.input_sheet(frame_result.frame_3.entry_file_2,
-                                                   frame_result.frame_4.combobox_sheet_2,
+                  width=15).pack(side=tk.LEFT, padx=(85, 5), pady=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][5],
+                  command=lambda: self.input_sheet(frame_result.frame_file_2.entry_file_2,
+                                                   frame_result.frame_sheet_2.combobox_sheet_2,
                                                    text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
-        tk.Button(frame_result.frame_5, text=control_frame_config['widget_text'][2],
-                  command=lambda: self.compare_sheet(frame_result.frame_1.entry_file_1,
-                                                     frame_result.frame_2.combobox_sheet_1,
-                                                     frame_result.frame_3.entry_file_2,
-                                                     frame_result.frame_4.combobox_sheet_2,
+                  width=15).pack(side=tk.LEFT, padx=5, pady=5)
+        tk.Button(frame_result.frame_button, text=control_frame_config['widget_text'][6],
+                  command=lambda: self.compare_sheet(frame_result.frame_file_1.entry_file_1,
+                                                     frame_result.frame_sheet_1.combobox_sheet_1,
+                                                     frame_result.frame_file_2.entry_file_2,
+                                                     frame_result.frame_sheet_2.combobox_sheet_2,
                                                      text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=15).pack(side=tk.LEFT, padx=5, pady=5)
 
         return frame_result
     

@@ -27,4 +27,6 @@ def export_new_xlsx(df):
     file_path = filedialog.asksaveasfilename(defaultextension='.xlsx', filetypes=[('Excel Files', '*.xlsx')])
     wb.save(file_path)
 
-    return [True, f'The xlsx output file path: {file_path}\nThe xlsx output file was exported successfully!\n', file_path]
+    info = f'The xlsx output file path: {file_path}\nThe xlsx output file was exported successfully!\n'
+
+    return [True, info, file_path]

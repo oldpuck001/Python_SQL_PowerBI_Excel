@@ -15,7 +15,7 @@ class gui_tk_sheets_script_class:
     def gui_tk_sheets_script_frame(self, root, control_frame_config, text_area):
         
         frame_result = tk.Frame(root)
-        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=5)
+        frame_result.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=(10, 5))
 
         frame_result.frames = []
 
@@ -32,24 +32,21 @@ class gui_tk_sheets_script_class:
             frame.entry_widget.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
 
             options = []                                                                                        # 创建选项列表
-            frame.combobox_widget = ttk.Combobox(frame, values=options, height=10, width=25, state='readonly')         # 使用 ttk.Combobox（现代下拉选框）
+            frame.combobox_widget = ttk.Combobox(frame, values=options, height=10, width=25, state='readonly')  # 使用 ttk.Combobox（现代下拉选框）
             frame.combobox_widget.pack(side=tk.LEFT, padx=5)
 
             tk.Button(frame, text=control_frame_config['widget_text'][1],
-                      command=lambda: self.input_sheet(frame.entry_widget,
-                                                       frame.combobox_widget,
-                                                       text_area),
+                      command=lambda e=frame.entry_widget, c=frame.combobox_widget: self.input_sheet(e, c, text_area),
                       width=10).pack(side=tk.LEFT, padx=5)
+            
             tk.Button(frame, text=control_frame_config['widget_text'][2],
-                      command=lambda: self.del_sheet(frame.entry_widget,
-                                                     frame.combobox_widget,
-                                                     text_area),
+                      command=lambda e=frame.entry_widget, c=frame.combobox_widget: self.del_sheet(e, c, text_area),
                       width=10).pack(side=tk.LEFT, padx=5)
 
             frame_result.frames.append(frame)
 
         frame_export = tk.Frame(frame_result)
-        frame_export.pack(side=tk.BOTTOM, fill=tk.X, padx=5, pady=(0,10))
+        frame_export.pack(side=tk.BOTTOM, fill=tk.X, padx=5, pady=(0, 10))
         tk.Button(frame_export, text=control_frame_config['widget_text'][3],
                   command=lambda: self.output_sheet(frame_result.frames,
                                                     num,
@@ -61,6 +58,7 @@ class gui_tk_sheets_script_class:
 
     # 添加按钮函数
     def input_sheet(self, entry_widget, combobox_widget, text_area):
+
         fill_text = ''
 
         path = filedialog.askopenfilename(filetypes=[('Excel Files', '*.xlsx'),
@@ -75,6 +73,7 @@ class gui_tk_sheets_script_class:
             fill_text += 'File selection successful!\n'
 
             sheets_name_result = sheetnames_import_fun.sheetnames_import(path)
+
             if sheets_name_result[0]:
 
                 sheets_name_list = sheets_name_result[2]
@@ -140,12 +139,21 @@ class gui_tk_sheets_script_class:
                     if df_result[0]:
                         df_list.append(df_result[2])
 
-        df_export = pd_concat_fun.pd_concat(df_list)
+        result = pd_concat_fun.pd_concat(df_list)
 
-        result_info = export_new_xlsx_fun.export_new_xlsx(df_export)
+        if result[0]:
 
-        if result_info[0]:
-            fill_text += result_info[1]
-            subprocess.run(['open', result_info[2]])
+            fill_text += result[1]
+            df_export = result[2]
+
+            result_info = export_new_xlsx_fun.export_new_xlsx(df_export)
+
+            if result_info[0]:
+                fill_text += result_info[1]
+                subprocess.run(['open', result_info[2]])
+
+        else:
+
+            fill_text += result[1]
 
         gui_tk_area_text.text_area_fill(text_area, fill_text)

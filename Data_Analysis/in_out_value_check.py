@@ -1,6 +1,6 @@
 # in_out_value_check.py
 
-from gui_tk import gui_tk_root
+from Accounting_Audit.gui_tk import gui_tk_root
 
 title = 'In/Out value check'
 geometry = '1280x720+50+50'

@@ -9,19 +9,28 @@ def sheet_pivot_table(file_path, sheet_name, row_value, column_value, subtotal_v
     result = read_xlsx_xls_csv_txt_fun.read_xlsx_xls_csv_txt(file_path=file_path, sheet_name=sheet_name)
 
     if result[0]:
+
         df = result[2]
         
         result_info = df_cleaning_fun.df_cleaning(df, subtotal_value, 'to_float')
 
         if result_info[0]:
+
             df_cleaned = result_info[2]
             df_export = pd.pivot_table(df_cleaned.iloc[0:], values=subtotal_value, index=row_value, columns=column_value, aggfunc='sum')
-            return [True, df_export]
+            info = 'Data pivoting was successful.'
+
+            return [True, info, df_export]
+        
         else:
-            return [False]
+
+            info = 'Data pivoting failed.'
+            return [False, info]
 
     else:
-        return [False]
+
+        info = 'Data import failed.'
+        return [False, info]
 
 
 

@@ -9,9 +9,9 @@ def cell_format(cell_fill, n):
 
     # 边框格式
     thin_border = openpyxl.styles.Border(left=openpyxl.styles.Side(style='thin'),
-                                        right=openpyxl.styles.Side(style='thin'),
-                                        top=openpyxl.styles.Side(style='thin'),
-                                        bottom=openpyxl.styles.Side(style='thin'))
+                                         right=openpyxl.styles.Side(style='thin'),
+                                         top=openpyxl.styles.Side(style='thin'),
+                                         bottom=openpyxl.styles.Side(style='thin'))
 
     if n == 1:
         cell_fill.border = thin_border

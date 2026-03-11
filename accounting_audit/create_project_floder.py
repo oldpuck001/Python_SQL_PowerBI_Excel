@@ -52,7 +52,7 @@ class App:
         self.frame_folder_structure = tk.Frame(self.root)
         self.frame_folder_structure.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=5)
         tk.Label(self.frame_folder_structure, text='Folder Structure', anchor='w').pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
-        self.folder_structure = ScrolledText(self.frame_folder_structure, height=22)
+        self.folder_structure = ScrolledText(self.frame_folder_structure, height=21)
         self.folder_structure.pack(side=tk.TOP, expand=True, fill=tk.X)
         self.folder_structure.insert(tk.INSERT, self.path_fill)
         self.folder_structure.see(tk.END)  
@@ -63,7 +63,7 @@ class App:
         tk.Button(self.frame_folder_structure, text='建立文件夹结构',
                   command=lambda: self.add_folder(self.folder_structure,
                                                   self.text_area),
-                  width=10).pack(side=tk.LEFT, padx=5)
+                  width=25).pack(side=tk.TOP, padx=5, pady=(15, 0))
 
         # 操作记录区
         self.frame_text_area = tk.Frame(self.root)
