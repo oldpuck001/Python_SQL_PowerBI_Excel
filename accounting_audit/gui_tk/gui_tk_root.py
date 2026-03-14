@@ -10,9 +10,10 @@ from gui_tk import gui_tk_sheet_comparision
 from gui_tk import gui_tk_sheet_subtotals
 from gui_tk import gui_tk_sheet_regex
 from gui_tk import gui_tk_in_out_sort
-# from gui_tk import gui_tk_in_out_value_check
+from gui_tk import gui_tk_in_out_value_check
 
-# from gui_tk import gui_tk_sql_sqlite
+
+
 
 gui_tk_find_subset_py = gui_tk_find_subset.gui_tk_find_subset_class()
 gui_tk_sheets_script_py = gui_tk_sheets_script.gui_tk_sheets_script_class()
@@ -20,9 +21,10 @@ gui_tk_sheet_comparision_py = gui_tk_sheet_comparision.gui_tk_sheet_comparision_
 gui_tk_sheet_subtotals_py = gui_tk_sheet_subtotals.sheet_subtotals_ui_class()
 gui_tk_sheet_regex_py = gui_tk_sheet_regex.gui_tk_sheet_regex_class()
 gui_tk_in_out_sort_py = gui_tk_in_out_sort.gui_tk_in_out_sort_class()
-# gui_tk_in_out_value_check_py = gui_tk_in_out_value_check.gui_tk_in_out_value_check_class()
+gui_tk_in_out_value_check_py = gui_tk_in_out_value_check.gui_tk_in_out_value_check_class()
 
-# gui_tk_sql_sqlite_py = gui_tk_sql_sqlite.gui_tk_sql_sqlite_class()
+
+
 
 class App:
     def __init__(self, title='My Application', geometry='1024x768+140+130', minsize_x=640, minsize_y=360, maxsize_x=1920, maxsize_y=1080,
@@ -100,13 +102,21 @@ class App:
                                                                              control_frame_config=self.control_frame_config[n],
                                                                              text_area=self.text_area))
 
-            # elif self.control_frame_config[n]['name'] in ['in_out_value_check']:
-            #     self.root.control_frame_list.append(gui_tk_in_out_value_check_py.
-            #                                         gui_tk_in_out_value_check_frame(root=self.root,
-            #                                                                         control_frame_config=self.control_frame_config[n],
-            #                                                                         text_area=self.text_area))
+            elif self.control_frame_config[n]['name'] in ['in_out_value_check']:
+                self.root.control_frame_list.append(gui_tk_in_out_value_check_py.
+                                                    gui_tk_in_out_value_check_frame(root=self.root,
+                                                                                    control_frame_config=self.control_frame_config[n],
+                                                                                    text_area=self.text_area))
 
+            # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
+            #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
+            #                                                                                       control_frame_config=self.control_frame_config[n],
+            #                                                                                       text_area=self.text_area))
 
+            # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
+            #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
+            #                                                                                       control_frame_config=self.control_frame_config[n],
+            #                                                                                       text_area=self.text_area))
 
             # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
             #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,

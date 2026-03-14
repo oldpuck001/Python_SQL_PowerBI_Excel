@@ -189,9 +189,6 @@ class gui_tk_find_subset_class:
 
         result_info = df_review_xlsx_fun.df_review_xlsx(df)
 
-        if result_info[0]:
-            self.temp_path = result_info[2]
-
         fill_text += result_info[1]
 
         gui_tk_area_text.text_area_fill(text_area, fill_text)

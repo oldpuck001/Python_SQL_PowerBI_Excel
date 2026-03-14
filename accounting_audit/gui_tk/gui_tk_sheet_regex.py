@@ -19,7 +19,6 @@ class gui_tk_sheet_regex_class:
 
     regex_list = []
     left_right = False
-    temp_path = ''
     data_df = pd.DataFrame()
 
     def gui_tk_sheet_regex_frame(self, root, control_frame_config, text_area):
@@ -202,8 +201,6 @@ class gui_tk_sheet_regex_class:
 
         fill_text = ''
         result_info = df_review_xlsx_fun.df_review_xlsx(self.data_df)
-        if result_info[0]:
-            self.temp_path = result_info[2]
         fill_text += result_info[1]
         gui_tk_area_text.text_area_fill(text_area, fill_text)
 
@@ -382,8 +379,6 @@ class gui_tk_sheet_regex_class:
         result_info = export_new_xlsx_fun.export_new_xlsx(self.data_df)
 
         if result_info[0]:
-            if self.temp_path:
-                os.remove(self.temp_path)
             fill_text += result_info[1]
             subprocess.run(['open', result_info[2]])
         

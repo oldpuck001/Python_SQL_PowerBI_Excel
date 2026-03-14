@@ -5,17 +5,17 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter.scrolledtext import ScrolledText
-from Accounting_Audit.gui_tk import gui_tk_area_text
-from Accounting_Audit.dataframe_tools_pd import sheetnames_import_fun
-from Accounting_Audit.dataframe_tools_pd import read_xlsx_xls_csv_txt_fun
-from Accounting_Audit.dataframe_tools_pd import df_review_xlsx_fun
-from Accounting_Audit.dataframe_tools_pd import df_cleaning_fun
+from gui_tk import gui_tk_area_text
+from dataframe_tools_pd import sheetnames_import_fun
+from dataframe_tools_pd import read_xlsx_xls_csv_txt_fun
+from dataframe_tools_pd import df_review_xlsx_fun
+from dataframe_tools_pd import df_cleaning_fun
 
 class gui_tk_import_xlsx_xls_csv_txt_class:
 
     def __init__(self):
+
         self.result_df = None
-        self.temp_path = ''
         self.path = ''
         self.sheet_name = ''
 
@@ -26,34 +26,43 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
         import_sheet_win.geometry('1280x480+120+120')
         import_sheet_win.resizable(False, False)
 
-        options = []  
+        options_blank = []  
         options_T_F = [True, False]
+        options_clean = ['删除指定列的重复行',
+                         '填充缺失值为 0',
+                         '填充缺失值为 <空白>',
+                         '填充缺失值为 重复上一行',
+                         '标准化文本（去除首尾空格及转换为小写英文字母）',
+                         '将数据类型转换为字符型',
+                         '转换为整数，支持缺失值',
+                         '转换为浮点数，支持缺失值',
+                         '将数据类型转换为时间日期类型']
 
         # 地址栏行
         frame_1 = tk.Frame(import_sheet_win)
         frame_1.pack(side=tk.TOP, fill=tk.BOTH)
-        tk.Label(frame_1, text='File Path', width=6, anchor='w').pack(side=tk.LEFT, padx=(5, 0), pady=(10, 5))
-        frame_1.entry_file = tk.Entry(frame_1, state='readonly', readonlybackground='white', width=105)                                    # 创建Entry并保存引用
-        frame_1.entry_file.pack(side=tk.LEFT, expand=True, padx=(0, 0), pady=(10, 5))
+        tk.Label(frame_1, text='File Path', width=6, anchor='w').pack(side=tk.LEFT, padx=5, pady=(10, 5))
+        frame_1.entry_path = tk.Entry(frame_1, state='readonly', readonlybackground='white', width=105)           # 创建Entry并保存引用
+        frame_1.entry_path.pack(side=tk.LEFT, expand=True, padx=5, pady=(10, 5))
         tk.Button(frame_1, text='选择导入文件',
-                  command=lambda: self.select_open_file_path(frame_1.entry_file, frame_8.text_area),
-                  width=17).pack(side=tk.LEFT, padx=(0, 15), pady=(10, 5))
+                  command=lambda: self.select_open_file_path(frame_1.entry_path, frame_8.text_area),
+                  width=17).pack(side=tk.LEFT, padx=(5, 15), pady=(10, 5))
 
         # 选择工作表与按钮列
         frame_2 = tk.Frame(import_sheet_win)
         frame_2.pack(side=tk.TOP, fill=tk.BOTH)
         tk.Label(frame_2, text='Excel sheet', width=8, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
-        frame_2.combobox = ttk.Combobox(frame_2, values=options, height=10, width=55, state='readonly')     # 使用 ttk.Combobox（现代下拉选框）
-        frame_2.combobox.pack(side=tk.LEFT, padx=(5,30), pady=5)
+        frame_2.combobox_sheet = ttk.Combobox(frame_2, values=options_blank, height=10, width=55, state='readonly')     # 使用 ttk.Combobox（现代下拉选框）
+        frame_2.combobox_sheet.pack(side=tk.LEFT, padx=(5,30), pady=5)
         tk.Button(frame_2, text='读取工作表清单',
-                  command=lambda: self.button_sheets_fun(frame_1.entry_file, frame_2.combobox, frame_8.text_area),
+                  command=lambda: self.button_sheets_fun(frame_1.entry_path, frame_2.combobox_sheet, frame_8.text_area),
                   width=17).pack(side=tk.LEFT, padx=(5, 20), pady=5)
         tk.Button(frame_2, text='读取参数说明',
                   command=lambda: self.button_manual_fun(),
                   width=17).pack(side=tk.LEFT, padx=(5, 20), pady=5)
         tk.Button(frame_2, text='读取数据',
-                  command=lambda: self.button_load_fun(frame_1.entry_file,
-                                                       frame_2.combobox,
+                  command=lambda: self.button_load_fun(frame_1.entry_path,
+                                                       frame_2.combobox_sheet,
                                                        frame_3.entry_skiprows,
                                                        frame_3.entry_usecols,
                                                        frame_3.entry_nrows,
@@ -158,15 +167,6 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
         frame_7.combobox_col.pack(side=tk.LEFT, padx=(5, 20), pady=5)
 
         tk.Label(frame_7, text='数据清洗选项', width=10, anchor='w').pack(side=tk.LEFT, padx=5, pady=5)
-        options_clean = ['删除指定列的重复行',
-                         '填充缺失值为 0',
-                         '填充缺失值为 <空白>',
-                         '填充缺失值为 重复上一行',
-                         '标准化文本（去除首尾空格及转换为小写英文字母）',
-                         '将数据类型转换为字符型',
-                         '转换为整数，支持缺失值',
-                         '转换为浮点数，支持缺失值',
-                         '将数据类型转换为时间日期类型']
         frame_7.combobox_clean = ttk.Combobox(frame_7, values=options_clean, height=10, width=33, state='readonly')
         frame_7.combobox_clean.set(options_clean[7])
         frame_7.combobox_clean.pack(side=tk.LEFT, padx=(5, 20), pady=5)
@@ -193,7 +193,7 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
 
 
     # 选择文件按钮函数
-    def select_open_file_path(self, entry_file, sub_text_area):
+    def select_open_file_path(self, entry_path, sub_text_area):
 
         fill_text = ''
 
@@ -204,10 +204,10 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
                                                      ('All Files', '*.*')])
 
         if path:
-            entry_file.config(state='normal')
-            entry_file.delete(0, tk.END)
-            entry_file.insert(0, path)
-            entry_file.config(state='readonly')
+            entry_path.config(state='normal')
+            entry_path.delete(0, tk.END)
+            entry_path.insert(0, path)
+            entry_path.config(state='readonly')
             fill_text += f'Selected: {path}\n'
             fill_text += 'File selection successful!\n'
         else:
@@ -377,9 +377,9 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
         fill_text = ''
 
         result_info = df_review_xlsx_fun.df_review_xlsx(self.result_df)
-        if result_info[0]:
-            self.temp_path = result_info[2]
+
         fill_text += result_info[1]
+        
         gui_tk_area_text.text_area_fill(sub_text_area, fill_text)
 
 
@@ -417,6 +417,4 @@ class gui_tk_import_xlsx_xls_csv_txt_class:
     # 返回数据按钮函数
     def button_return_fun(self, import_sheet_win):
 
-        if self.temp_path:
-            os.remove(self.temp_path)
         import_sheet_win.destroy()

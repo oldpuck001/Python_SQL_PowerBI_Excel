@@ -8,7 +8,7 @@ from tkinter import ttk
 from tkinter import filedialog
 from tkinter.scrolledtext import ScrolledText
 from Accounting_Audit.gui_tk import gui_tk_area_text
-from gui_tk import gui_tk_import_xlsx_xls_csv_txt
+from Accounting_Audit.gui_tk import gui_tk_import_xlsx_xls_csv_txt
 from Accounting_Audit.dataframe_tools_pd import df_review_xlsx_fun
 from Accounting_Audit.dataframe_tools_pd import df_export_xlsx_fun
 from sql_tools_sqlite import create_database_sqlite_fun
