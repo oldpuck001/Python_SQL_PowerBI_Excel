@@ -1,18 +1,19 @@
-# get_all_tables_sqlite_fun.py
+# execute_query_sqlite_fun.py
 
-# 获取所有表名
+# 执行SQL查询并返回结果DataFrame
 
 import sqlite3
+import pandas as pd
 
-def get_all_tables_sqlite(database_file_path):
+def execute_query_sqlite(database_file_path, query):
 
     try:
 
-        conn = sqlite3.connect(database_file_path)
+        conn = sqlite3.connect(database_file_path)         # 建立数据库连接
         curs = conn.cursor()
-        curs.execute("SELECT name FROM sqlite_master WHERE type='table'")
-        tables = curs.fetchall()
-        return [True, [table[0] for table in tables]]
+        result_df = pd.read_sql(query, conn)               # 从数据库读取数据
+
+        return [True, result_df]
     
     except sqlite3.OperationalError as e:
 
@@ -31,6 +32,7 @@ def get_all_tables_sqlite(database_file_path):
         return [False, e]
     
     finally:
+        
         # 关闭数据库
         curs.close()
         conn.close()

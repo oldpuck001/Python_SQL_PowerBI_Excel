@@ -35,6 +35,7 @@ def table_exists(sql_path, table_name):
         return [False, e]
     
     finally:
+        
         # 关闭数据库
         curs.close()
         conn.close()

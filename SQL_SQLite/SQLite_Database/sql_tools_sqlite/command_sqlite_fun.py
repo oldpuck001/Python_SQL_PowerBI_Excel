@@ -34,7 +34,7 @@ def command_sqlite(database_path, sql_type, sql_command):
             conn.commit()
             result_text = (f'\n指令：\n{sql_command}\n执行成功！影响行数：{curs.rowcount}\n')
 
-        return result_text
+        return [True, result_text]
 
     except sqlite3.OperationalError as e:
 
@@ -53,6 +53,7 @@ def command_sqlite(database_path, sql_type, sql_command):
         return [False, e]
     
     finally:
+        
         # 关闭数据库
         curs.close()
         conn.close()

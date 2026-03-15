@@ -1,23 +1,18 @@
-# get_table_info_sqlite_fun.py
+# get_all_tables_sqlite_fun.py
 
-# 获取表信息
+# 获取所有表名
 
 import sqlite3
 
-def get_table_info_sqlite(sql_path, table_name):
+def get_all_tables_sqlite(database_file_path):
 
     try:
 
-        conn = sqlite3.connect(sql_path)
+        conn = sqlite3.connect(database_file_path)
         curs = conn.cursor()
-
-        curs.execute(f"PRAGMA table_info({table_name})")
-        columns = curs.fetchall()
-
-        curs.execute(f"SELECT COUNT(*) FROM {table_name}")
-        row_count = curs.fetchone()[0]
-        
-        return [True, [columns, row_count]]
+        curs.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = curs.fetchall()
+        return [True, [table[0] for table in tables]]
     
     except sqlite3.OperationalError as e:
 
@@ -36,6 +31,7 @@ def get_table_info_sqlite(sql_path, table_name):
         return [False, e]
     
     finally:
+        
         # 关闭数据库
         curs.close()
         conn.close()
