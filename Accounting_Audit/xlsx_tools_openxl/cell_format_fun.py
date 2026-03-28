@@ -29,5 +29,10 @@ def cell_format(cell_fill, n):
         cell_fill.border = thin_border
         cell_fill.alignment = Alignment(vertical='center')
         cell_fill.number_format = '#,##0.00'
+    
+    elif n == 5:
+        cell_fill.border = thin_border
+        cell_fill.alignment = Alignment(vertical='center')
+        cell_fill.number_format = 'yyyy-mm-dd'
 
     return

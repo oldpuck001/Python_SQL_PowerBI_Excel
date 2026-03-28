@@ -11,8 +11,7 @@ from gui_tk import gui_tk_sheet_subtotals
 from gui_tk import gui_tk_sheet_regex
 from gui_tk import gui_tk_in_out_sort
 from gui_tk import gui_tk_in_out_value_check
-
-
+from gui_tk import gui_tk_account_data_clean
 
 
 gui_tk_find_subset_py = gui_tk_find_subset.gui_tk_find_subset_class()
@@ -22,7 +21,7 @@ gui_tk_sheet_subtotals_py = gui_tk_sheet_subtotals.sheet_subtotals_ui_class()
 gui_tk_sheet_regex_py = gui_tk_sheet_regex.gui_tk_sheet_regex_class()
 gui_tk_in_out_sort_py = gui_tk_in_out_sort.gui_tk_in_out_sort_class()
 gui_tk_in_out_value_check_py = gui_tk_in_out_value_check.gui_tk_in_out_value_check_class()
-
+gui_tk_account_data_clean_py = gui_tk_account_data_clean.gui_tk_account_data_clean_class()
 
 
 
@@ -108,20 +107,17 @@ class App:
                                                                                     control_frame_config=self.control_frame_config[n],
                                                                                     text_area=self.text_area))
 
-            # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
-            #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
-            #                                                                                       control_frame_config=self.control_frame_config[n],
-            #                                                                                       text_area=self.text_area))
+            elif self.control_frame_config[n]['name'] in ['account_data_clean']:
+                 self.root.control_frame_list.append(gui_tk_account_data_clean_py.
+                                                     gui_tk_account_data_clean_frame(root=self.root,
+                                                                                     control_frame_config=self.control_frame_config[n],
+                                                                                     text_area=self.text_area))
 
             # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
             #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
             #                                                                                       control_frame_config=self.control_frame_config[n],
             #                                                                                       text_area=self.text_area))
 
-            # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
-            #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
-            #                                                                                       control_frame_config=self.control_frame_config[n],
-            #                                                                                       text_area=self.text_area))
 
     def bring_to_front(self):
         self.root.lift()
