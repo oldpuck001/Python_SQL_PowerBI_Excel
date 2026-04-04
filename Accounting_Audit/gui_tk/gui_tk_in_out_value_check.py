@@ -245,6 +245,7 @@ class gui_tk_in_out_value_check_class:
                                                              text_area),
                   width=15).pack(side=tk.LEFT, padx=5, pady=5)
 
+        return frame_result
 
     # 导入数据按钮函数
     def import_sheet(self, root, entry_path, entry_sheet_name, combobox_sheet_item, combobox_sheet_in_col,

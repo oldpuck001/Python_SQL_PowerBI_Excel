@@ -12,7 +12,8 @@ from gui_tk import gui_tk_sheet_regex
 from gui_tk import gui_tk_in_out_sort
 from gui_tk import gui_tk_in_out_value_check
 from gui_tk import gui_tk_account_data_clean
-
+from gui_tk import gui_tk_create_project_floder
+from gui_tk import gui_tk_fill_info_sheet
 
 gui_tk_find_subset_py = gui_tk_find_subset.gui_tk_find_subset_class()
 gui_tk_sheets_script_py = gui_tk_sheets_script.gui_tk_sheets_script_class()
@@ -22,10 +23,11 @@ gui_tk_sheet_regex_py = gui_tk_sheet_regex.gui_tk_sheet_regex_class()
 gui_tk_in_out_sort_py = gui_tk_in_out_sort.gui_tk_in_out_sort_class()
 gui_tk_in_out_value_check_py = gui_tk_in_out_value_check.gui_tk_in_out_value_check_class()
 gui_tk_account_data_clean_py = gui_tk_account_data_clean.gui_tk_account_data_clean_class()
-
-
+gui_tk_create_project_floder_py = gui_tk_create_project_floder.gui_tk_create_project_floder_class()
+gui_tk_fill_info_sheet_py = gui_tk_fill_info_sheet.gui_tk_fill_info_sheet_class()
 
 class App:
+
     def __init__(self, title='My Application', geometry='1024x768+140+130', minsize_x=640, minsize_y=360, maxsize_x=1920, maxsize_y=1080,
                     resizable_x=True, resizable_y=True, control_frame_n=0, control_frame_config=[]):
 
@@ -108,16 +110,22 @@ class App:
                                                                                     text_area=self.text_area))
 
             elif self.control_frame_config[n]['name'] in ['account_data_clean']:
-                 self.root.control_frame_list.append(gui_tk_account_data_clean_py.
+                self.root.control_frame_list.append(gui_tk_account_data_clean_py.
                                                      gui_tk_account_data_clean_frame(root=self.root,
                                                                                      control_frame_config=self.control_frame_config[n],
                                                                                      text_area=self.text_area))
 
-            # elif self.control_frame_config[n]['name'] in ['SQLite Database']:
-            #      self.root.control_frame_list.append(gui_tk_sql_sqlite_py.gui_tk_sql_sqlite_frame(root=self.root,
-            #                                                                                       control_frame_config=self.control_frame_config[n],
-            #                                                                                       text_area=self.text_area))
+            elif self.control_frame_config[n]['name'] in ['create_project_floder']:
+                self.root.control_frame_list.append(gui_tk_create_project_floder_py.
+                                                    gui_tk_create_project_floder_frame(root=self.root,
+                                                                                       control_frame_config=self.control_frame_config[n],
+                                                                                       text_area=self.text_area))
 
+            elif self.control_frame_config[n]['name'] in ['fill_info_sheet']:
+                 self.root.control_frame_list.append(gui_tk_fill_info_sheet_py.
+                                                     gui_tk_fill_info_sheet_frame(root=self.root,
+                                                                                  control_frame_config=self.control_frame_config[n],
+                                                                                  text_area=self.text_area))
 
     def bring_to_front(self):
         self.root.lift()
