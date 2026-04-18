@@ -81,6 +81,14 @@ class gui_tk_create_project_floder_class:
         target_file_path = os.path.join(path, '项目数据', 'depreciation_amortization_line.xlsx')
         shutil.copy(source_file_path, target_file_path)
 
+        source_file_path = os.path.join(current_script_dir, '..', 'xlsx_file', 'bank_account.xlsx')
+        target_file_path = os.path.join(path, '项目数据', 'bank_account.xlsx')
+        shutil.copy(source_file_path, target_file_path)
+
+        source_file_path = os.path.join(current_script_dir, '..', 'xlsx_file', 'adjusting_entries.xlsx')
+        target_file_path = os.path.join(path, '审计底稿', '调整分录.xlsx')
+        shutil.copy(source_file_path, target_file_path)
+
         gui_tk_area_text.text_area_fill(text_area, fill_text)
 
 

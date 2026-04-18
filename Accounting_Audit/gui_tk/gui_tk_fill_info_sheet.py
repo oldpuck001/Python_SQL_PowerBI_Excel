@@ -100,18 +100,18 @@ class gui_tk_fill_info_sheet_class:
                                 shareholder_type[n] = value
                             else:
                                 break
-                    elif keywords == '认缴出资额（万元）' and j < 23:
+                    elif keywords == '认缴出资额' and j < 23:
                         for n in range(7):
                             value = basic_info_df.iloc[j+n+1, i]
                             if pd.notna(value):
-                                shareholder_registered[n] = float(value)
+                                shareholder_registered[n] = float(value.replace('（万元）', ''))
                             else:
                                 break
-                    elif keywords == '实缴出资额（万元）' and j < 23:
+                    elif keywords == '实缴出资额' and j < 23:
                         for n in range(7):
                             value = basic_info_df.iloc[j+n+1, i]
                             if pd.notna(value):
-                                shareholder_paid[n] = float(value)
+                                shareholder_paid[n] = float(value.replace('（万元）', ''))
                             else:
                                 break
 
